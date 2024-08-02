@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4A Team Homepage</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        .logoutLblPos{
+    
+            position:fixed;
+            right:10px;
+            top:5px;
+         }
+    </style>
+</head>
+
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Welcome to 4A Team</h1>
+            {% if user.is_authenticated %}
+                <form align="right" name="form1" method="post" action="logout">
+                    {% csrf_token %}
+                    <label class="logoutLblPos">
+                    <input name="submit2" type="submit" id="submit2" value="log out">
+                    </label>
+                </form>
+            
+                <h1>Wellcome {{user.username}}</h1>
+            
+            {% endif %}
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="auth-links">
+                    <a href="login" class="btn">Login</a>
+                    <a href="signup" class="btn">Signup</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Innovate, Collaborate, Achieve</h2>
+            <p>Join us on our journey to excellence.</p>
+        </div>
+    </section>
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>We are team 4A, committed to delivering top-notch solutions and services.</p>
+        </div>
+    </section>
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p>Explore the wide range of services we offer to meet your needs.</p>
+        </div>
+    </section>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us to learn more or to get started.</p>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 4A Team . All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

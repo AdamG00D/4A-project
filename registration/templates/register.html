@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            #reg-right{
+                
+                background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({% static '/imgs/registerbg.png'%});
+            }
+
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<link rel="icon" href="{% static '/imgs/icon.png'"> -->
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+        <link rel="stylesheet" href="{% static 'css/register.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+        <title>Login</title>
+    </head>
+    <body>
+        <section id="reg">
+            <div id="reg-left">
+
+                <img alt="logo" src="{% static '/imgs/logo.png' %}">
+                <!-- Login Form, fl stands for "form login" -->
+                <form action='login' id="reg-login" class="reg-form" method="POST">
+                    {% csrf_token %}
+                    <div class="reg-group">
+                        <h2>Login</h2>
+                    </div>
+
+                    <div class="reg-group">
+                        <label for="fl-name">Username</label><br>
+                        <input type="text" id="fl-name" name="fl-name"><br>
+                    </div>
+
+                    <div class="reg-group">
+                        <label for="fl-pass">Password</label><br>
+                        <input type="password" id="fl-pass" name="fl-pass">
+                        <button type="button" ontouchstart="togglePass('fl-pass', this)" onmouseup="togglePass('fl-pass', this)" onmousedown="togglePass('fl-pass', this)"><i class="material-symbols-outlined">visibility</i></button>
+                    </div>
+
+                    <div class="reg-group">
+                        <input type="checkbox" id="fl-stayloggedin" name="fl-stayloggedin" class="reg-stayloggedin">
+                        <label for="fl-stayloggedin" class="reg-stayloggedin">Stay logged in</label>
+                        <a href="" id="reg-login-trouble">Having trouble?</a><br>
+                    </div>
+
+                    <div class="reg-group" id="flg-submit">
+                        <input type="button" onclick="submitFL()" value="Create account" class="btn-submit">
+                    </div>
+                </form>
+                <!-- Signup Form, fs stands for "form signup" -->
+                <form action='signup' id="reg-signup" class="reg-form" method="POST"> 
+                    {% csrf_token %}
+                    <div class="reg-group" id="fsg-title">
+                        <h2>Sign up</h2>
+                    </div>
+
+                    <div class="reg-group">
+                        <label for="fs-name">Username (+6 characters)</label><br>
+                        <input type="text" id="fs-name" name="fs-name" onblur="checkInputLength(this, 6)">
+                    </div>
+
+                    <div class="reg-group">
+                        <label for="fs-email">Email</label><br>
+                        <input type="text" id="fs-email" name="fs-email" onblur="checkEmail()">
+                    </div>
+
+                    <div class="reg-group">
+                        <label for="fs-pass">Password (+6 characters)</label>
+                        <input type="password" id="fs-pass" name="fs-pass" onblur="checkInputLength(this, 6)">
+                        <button type="button" ontouchstart="togglePass('fs-pass', this)" onmouseup="togglePass('fs-pass', this)" onmousedown="togglePass('fs-pass', this)"><i class="material-symbols-outlined">visibility</i></button>
+                    </div>
+
+                    <div class="reg-group">
+                        <label for="fs-passcon">Password Confirmation</label><br>
+                        <input type="password" id="fs-passcon" name="fs-passcon" onblur="checkPassCon()">
+                        <button type="button" ontouchstart="togglePass('fs-passcon', this)" onmouseup="togglePass('fs-passcon', this)" onmousedown="togglePass('fs-passcon', this)"><i class="tesa material-symbols-outlined">visibility</i></button>
+                    </div>
+
+                    <div class="reg-group">
+                        <input type="checkbox" id="fs-stayloggedin" name="fs-stayloggedin">
+                        <label for="fs-stayloggedin">Stay logged in</label>
+                    </div>
+
+                    <div class="reg-group">
+                        <input type="button" onclick="submitFS()" value="Create account" class="btn-submit">
+                    </div>
+                </form>
+
+                <!-- Error message when handeling  -->
+                <p id="reg-error">
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+                </p>
+
+                <ul id="reg-choices">
+                    <li>
+                        <button onclick="activateLogin()" id="loginbtn" class="cur-on tooltip">
+                            <i class="material-symbols-outlined">input</i>
+                            Login
+                            <!-- <span class="tooltipdata">Login with your account</span> -->
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="activateSignup()" id="signupbtn" class="cur-on tooltip">
+                            <i class="material-symbols-outlined">person_add</i>
+                            Signup
+                            <!-- <span class="tooltipdata">Create a new account</span> -->
+                        </button>
+                    </li>
+                </ul>
+
+            </div>
+            <div id="reg-right" >
+                <h1>Welcome</h1>
+                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+            </div>
+        </section>
+        <footer></footer>
+        <script src="{% static 'js/register.js' %}"></script>
+        <script src="https://kit.fontawesome.com/2851c9d535.js" crossorigin="anonymous"></script>
+
+    </body>
+</html>
