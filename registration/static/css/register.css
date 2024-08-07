@@ -258,6 +258,7 @@ body {
 
 }
 
+
 @media screen and (max-width: 900px) {
     
     #reg-right {
@@ -283,6 +284,7 @@ body {
         height: 70%;
     }
 
+    
 }
 
 
@@ -291,7 +293,9 @@ body {
         width: 70%;
     }
 
-
+    #reg {
+        width: 90%;
+    }
 
     .reg-form {
         padding-left: 40px;

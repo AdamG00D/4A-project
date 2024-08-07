@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4A Team Homepage</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+
     <style>
         .logoutLblPos{
     
             position:fixed;
             right:10px;
             top:5px;
+            border:none;
          }
     </style>
 </head>
@@ -21,17 +24,7 @@
     <header>
         <div class="container">
             <h1>Welcome to 4A Team</h1>
-            {% if user.is_authenticated %}
-                <form align="right" name="form1" method="post" action="logout">
-                    {% csrf_token %}
-                    <label class="logoutLblPos">
-                    <input name="submit2" type="submit" id="submit2" value="log out">
-                    </label>
-                </form>
-            
-                <h1>Wellcome {{user.username}}</h1>
-            
-            {% endif %}
+            <h1>Wellcome {{user.username}}</h1>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -39,10 +32,22 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                
                 <div class="auth-links">
-                    <a href="login" class="btn">Login</a>
-                    <a href="signup" class="btn">Signup</a>
+                        {% if user.is_authenticated %}
+                            <form align="right" name="form1" method="post" action="logout">
+                                {% csrf_token %}
+                                <label class="logoutLblPos">
+                                <input name="submit2" type="submit" class="btn" value="log out">
+                                </label>
+                            </form>
+
+                        {% elif not user.is_authenticated %}
+                        <a href="register?type=l" class="btn">Login</a>
+                        <a href="register?type=s" class="btn">Signup</a>
+                        {% endif %}
                 </div>
+                
             </nav>
         </div>
     </header>

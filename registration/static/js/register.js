@@ -94,3 +94,14 @@ function submitFL(e) {
         form.submit();
     }
 }
+function checkParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('type') === 'l') {
+        activateLogin();
+    } else if (urlParams.get('type') === 's') {
+        activateSignup();
+    }
+  }
+  
+
+window.onload = checkParameters();

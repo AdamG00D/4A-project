@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{% static 'css/global.css' %}">
         <link rel="stylesheet" href="{% static 'css/register.css' %}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-        <title>Login</title>
+        <title>Registration</title>
     </head>
     <body>
         <section id="reg">
@@ -23,7 +23,7 @@
 
                 <img alt="logo" src="{% static '/imgs/logo.png' %}">
                 <!-- Login Form, fl stands for "form login" -->
-                <form action='login' id="reg-login" class="reg-form" method="POST">
+                <form action='register' id="reg-login" class="reg-form" method="POST">
                     {% csrf_token %}
                     <div class="reg-group">
                         <h2>Login</h2>
@@ -45,13 +45,14 @@
                         <label for="fl-stayloggedin" class="reg-stayloggedin">Stay logged in</label>
                         <a href="" id="reg-login-trouble">Having trouble?</a><br>
                     </div>
-
+                    
                     <div class="reg-group" id="flg-submit">
-                        <input type="button" onclick="submitFL()" value="Create account" class="btn-submit">
+                        <input type="button" onclick="submitFL()" value="Login" class="btn-submit">
                     </div>
+                    <input type="hidden" id="f-type" name="f-type" value="login" >
                 </form>
                 <!-- Signup Form, fs stands for "form signup" -->
-                <form action='signup' id="reg-signup" class="reg-form" method="POST"> 
+                <form action='register' id="reg-signup" class="reg-form" method="POST"> 
                     {% csrf_token %}
                     <div class="reg-group" id="fsg-title">
                         <h2>Sign up</h2>
@@ -83,10 +84,11 @@
                         <input type="checkbox" id="fs-stayloggedin" name="fs-stayloggedin">
                         <label for="fs-stayloggedin">Stay logged in</label>
                     </div>
-
+                    
                     <div class="reg-group">
                         <input type="button" onclick="submitFS()" value="Create account" class="btn-submit">
                     </div>
+                    <input type="hidden" id="f-type" name="f-type" value="signup" >
                 </form>
 
                 <!-- Error message when handeling  -->
@@ -105,7 +107,7 @@
                         </button>
                     </li>
                     <li>
-                        <button onclick="activateSignup()" id="signupbtn" class="cur-on tooltip">
+                        <button onclick="activateSignup()" id="signupbtn" class="tooltip">
                             <i class="material-symbols-outlined">person_add</i>
                             Signup
                             <!-- <span class="tooltipdata">Create a new account</span> -->
